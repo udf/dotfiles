@@ -3,6 +3,7 @@
 Enhanced version of music.sh, showing a lot more information and with a
 continuous output, which avoids burning CPU with unnecessary script restarts.
 """
+import sys
 import os
 import re
 from datetime import timedelta
@@ -49,19 +50,22 @@ def get_status(player):
 
 
 def get_position(player, metadata):
-    def fmt(tdelta):
-        hours, rem = divmod(tdelta.seconds, 3600)
+    def fmt(microseconds):
+        hours, rem = divmod(round(microseconds / 10**6), 3600)
         minutes, seconds = divmod(rem, 60)
         if hours:
             return f'{hours:02}:{minutes:02}:{seconds:02}'
         return f'{minutes:02}:{seconds:02}'
 
-    position = fmt(timedelta(microseconds=player.get_property('position')))
+    position = player.get_property('position')
     duration = metadata.get('mpris:length', 0)
+    percent = position/duration
+    position = fmt(position)
 
     if duration:
-        return '{}/{}'.format(position, fmt(timedelta(microseconds=duration)))
-    return f'{position}'
+        return '{}/{}'.format(position, fmt(duration)), percent
+
+    return f'{position}', 0
 
 
 def get_trackname(player, metadata):
@@ -79,6 +83,7 @@ def get_trackname(player, metadata):
 
 def print_status(player=None, metadata=None):
     output = []
+    percentage_progress = 0
 
     def append_output(data, fmt='{}'):
         if data:
@@ -103,7 +108,8 @@ def print_status(player=None, metadata=None):
         append_output(player.get_property('player-name'), '[{}]')
 
         if player.get_property('status') != "Stopped":
-            append_output(get_position(player, metadata), '[{}]')
+            position, percentage_progress = get_position(player, metadata)
+            append_output(position, '[{}]')
             append_output(get_trackname(player, metadata), ' {}')
 
     except GLib.Error as e:
@@ -112,7 +118,18 @@ def print_status(player=None, metadata=None):
     global prev_output
     output = ''.join(output)
     if output != prev_output:
-        print(output.ljust(output_width), flush=True)
+        real_output_width = min(len(output), output_width)
+
+        end_char = round(percentage_progress * real_output_width)
+        sys.stdout.write('%{u#fff}')
+
+        for i in range(len(output)):
+            sys.stdout.write(output[i])
+            if i == end_char:
+                sys.stdout.write('%{-u}')
+
+        sys.stdout.write(' '*(output_width - len(output)) + '\n')
+        sys.stdout.flush()
 
         prev_output = output
 
