@@ -1,16 +1,8 @@
 #!/usr/bin/python
-# better version of music.sh
-# advantages:
-#     - python
-#     - prints song progress
-#     - tells you which player the info is from
-#     - continuous output (avoid burning your CPU with unnecessary script restarts)
-#     - immediate updates because events
-#     - python
-#
-# disadvantages:
-#     - ???
-
+"""
+Enhanced version of music.sh, showing a lot more information and with a
+continuous output, which avoids burning CPU with unnecessary script restarts.
+"""
 import os
 import re
 from datetime import timedelta
@@ -24,7 +16,7 @@ output_width = 112
 current_player = None
 prev_output = ''
 
-# based on https://github.com/kiike/cmus-remote/blob/master/backend.py
+# Based on https://github.com/kiike/cmus-remote/blob/master/backend.py
 def cmus_get_filename():
     s = socket(AF_UNIX, SOCK_STREAM)
     s.connect(cmus_get_filename.socket_path)
@@ -41,12 +33,14 @@ def cmus_get_filename():
     return os.path.splitext(os.path.basename(ret[0]))[0]
 cmus_get_filename.socket_path = os.path.join('/run/', 'user', str(os.getuid()), 'cmus-socket')
 
+
 def get_status(player):
     status = player.get_property('status')
     return {'': '',
             'Playing': ' ',
             'Paused': ' ',
             'Stopped': ' '}.get(status, f'[{status}]')
+
 
 def get_position(player, metadata):
     def fmt(tdelta):
@@ -63,6 +57,7 @@ def get_position(player, metadata):
         return '{}/{}'.format(position, fmt(timedelta(microseconds=duration)))
     return f'{position}'
 
+
 def get_trackname(player, metadata):
     title = metadata.get('xesam:title', '')
     artist = ', '.join(metadata.get('xesam:artist', ''))
@@ -74,6 +69,7 @@ def get_trackname(player, metadata):
             return title
 
     return '{} - {}'.format(artist, title)
+
 
 def print_status(player=None, metadata=None):
     output = []
@@ -113,11 +109,13 @@ def print_status(player=None, metadata=None):
         print(output.ljust(output_width), flush=True)
 
         prev_output = output
-        
+
     return True
+
 
 def on_change(player, metadata=None):
     print_status()
+
 
 GLib.timeout_add(500, print_status)
 print_status()
