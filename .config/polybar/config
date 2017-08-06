@@ -1,0 +1,168 @@
+#------------------------------------#
+#                                    #
+#           Polybar config           #
+#                                    #
+#------------------------------------#
+
+[colors]
+background=${xrdb:background}
+foreground=${xrdb:foreground}
+my_color1 =${xrdb:color1}
+my_color4 =${xrdb:color4}
+my_color7 =${xrdb:color7}
+my_color8 =${xrdb:color8}
+
+[bar/main_bar]
+monitor=${env:MONITOR:HDMI-1}
+bottom=true
+width=100%
+height=20
+offset-x=0%
+offset-y=0%
+radius=0.0
+fixed-center=true
+
+background=${colors.background}
+foreground=${colors.foreground}
+
+line-size=3
+line-color=${colors.my_color4}
+
+padding-left=10
+padding-right=125
+
+module-margin-left=0
+module-margin-right=1
+
+#font-0=DejaVu Sans
+font-0=Hack:size=9;1
+font-1=FontAwesome:size=9;1
+font-2=Misc Fixed:size=9;1
+font-3=Misc Fixed Wide:size=9;1
+
+
+modules-left=musicinfo i3 xwindow
+modules-center=date volume
+modules-right=downspeed upspeed cpu memory
+
+tray-position=right
+tray-padding=5
+tray-offset-x=-15
+tray-transparent=false
+tray-maxsize=18
+tray-detached=true
+tray-background=${colors.background}
+
+wm-restack=i3
+
+[settings]
+screenchange-reload=true
+
+
+
+
+[module/musicinfo]
+type=custom/script
+exec=~/.config/polybar/music.py
+interval=1
+label=%output:0:112:...%
+format=<label>
+tail=true
+
+[module/i3]
+type=internal/i3
+
+label-unfocused-background=${colors.background}
+label-unfocused-foreground=${colors.foreground}
+
+label-mode=%mode%
+label-mode-padding=2
+label-mode-background=${colors.my_color7}
+
+label-focused=%index%
+label-focused-foreground=${colors.foreground}
+label-focused-background=${colors.background}
+label-focused-underline=${colors.my_color7}
+label-focused-padding=2
+
+label-unfocused=%index%
+label-unfocused-padding=2
+
+label-visible=%index%
+label-visible-underline=${colors.foreground}
+label-visible-padding=2
+
+label-urgent=%index%
+label-urgent-foreground=${colors.foreground}
+label-urgent-background=${colors.background}
+label-urgent-underline=${colors.my_color1}
+label-urgent-padding=2
+
+
+[module/xwindow]
+type=internal/xwindow
+label=%title:0:100:...%
+label-padding=1
+
+
+
+
+[module/date]
+type=internal/date
+interval=1
+date=" %a %b %d"
+time="%T %p "
+format-prefix-foreground=${colors.foreground}
+format-underline=${colors.my_color7}
+label=%date% %time%
+
+[module/volume]
+type=internal/volume
+label-volume = %percentage:3%%
+format-volume=<ramp-volume> <label-volume>
+format-volume-underline=${colors.my_color7}
+label-muted= 
+label-muted-underline=$#ff4a4a
+ramp-volume-0=
+ramp-volume-1=
+ramp-volume-2=
+
+
+
+
+[global/wm]
+margin-top=5
+margin-bottom=5
+
+
+[module/cpu]
+type=internal/cpu
+interval=1
+format-prefix=" "
+format-underline=#ff4a4a
+label=%percentage:2%%
+
+
+[module/memory]
+type=internal/memory
+interval=5
+format-prefix=" "
+format-underline=#4aff4a
+label=%percentage_used:2%%
+
+
+[module/downspeed]
+type=internal/network
+interface=enp5s0
+interval=1
+label-connected= %downspeed:4%
+
+format-connected-underline=#ffff4a
+
+[module/upspeed]
+type=internal/network
+interface=enp5s0
+interval=1
+label-connected= %upspeed:4%
+
+format-connected-underline=#4affff
