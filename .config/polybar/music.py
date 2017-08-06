@@ -22,7 +22,7 @@ from gi.repository import Playerctl, GLib
 
 output_width = 112
 current_player = None
-prev_output = ''
+prev_output = None
 
 # based on https://github.com/kiike/cmus-remote/blob/master/backend.py
 def cmus_get_filename():
