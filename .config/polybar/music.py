@@ -118,15 +118,17 @@ def print_status(player=None, metadata=None):
 
     global prev_output
     output = ''.join(output)
+    end_underline_pos = len(output)
+    output = output.ljust(output_width)
     if output != prev_output:
-        end_underline_pos = round(percentage_progress * min(len(output), output_width))
+        end_underline_pos = round(percentage_progress * min(end_underline_pos, output_width))
 
         sys.stdout.write('%{u#fff}')
         for i in range(len(output)):
-            sys.stdout.write(output[i])
             if i == end_underline_pos:
                 sys.stdout.write('%{-u}')
-        sys.stdout.write(' '*(output_width - len(output)) + '\n')
+            sys.stdout.write(output[i])
+        sys.stdout.write('\n')
         sys.stdout.flush()
 
         prev_output = output
