@@ -13,6 +13,7 @@ import gi
 gi.require_version('Playerctl', '1.0')
 from gi.repository import Playerctl, GLib
 
+# todo:make this configurable via command line args
 output_width = 112
 current_player = None
 prev_output = None
@@ -118,16 +119,13 @@ def print_status(player=None, metadata=None):
     global prev_output
     output = ''.join(output)
     if output != prev_output:
-        real_output_width = min(len(output), output_width)
+        end_underline_pos = round(percentage_progress * min(len(output), output_width))
 
-        end_char = round(percentage_progress * real_output_width)
         sys.stdout.write('%{u#fff}')
-
         for i in range(len(output)):
             sys.stdout.write(output[i])
-            if i == end_char:
+            if i == end_underline_pos:
                 sys.stdout.write('%{-u}')
-
         sys.stdout.write(' '*(output_width - len(output)) + '\n')
         sys.stdout.flush()
 
