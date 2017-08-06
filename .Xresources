@@ -1,0 +1,11 @@
+#if __has_include(".extend.Xresources")
+#include ".extend.Xresources"
+#endif
+
+Xcursor.size: 16
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
