@@ -146,7 +146,9 @@ bindsym XF86AudioPause exec "playerctl play-pause"
 bindsym XF86AudioNext exec "playerctl next"
 bindsym XF86AudioPrev exec "playerctl previous"
 
-bindsym $mod+XF86AudioNext exec $HOME/cmus-delete-current.sh
+bindsym $mod+XF86AudioNext exec $HOME/cmus-move-current.sh ~/Music/_trash && cmus-remote -n && cmus-remote -C update-cache
+bindsym $mod+Ctrl+XF86AudioNext exec $HOME/cmus-move-current.sh ~/Music/_favourites && cmus-remote -n && cmus-remote -C update-cache
+bindsym $mod+XF86AudioPlay exec $HOME/cmus-move-current.sh ~/Music/_favourites
 
 
 # program shortcuts
@@ -163,7 +165,6 @@ bindsym --release Ctrl+Print exec --no-startup-id $HOME/screenshot.sh -s -e gimp
 
 # floating windows defs
 for_window [class="Lxappearance"] floating enable
-for_window [class="Thunar"] floating enable
 for_window [class="File-roller"] floating enable
 for_window [instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] floating enable
 for_window [title="^!float$"] floating enable

@@ -32,7 +32,7 @@ def cmus_get_filename():
     result = re.findall(r'file (.+)\n', recv.decode('utf-8'))
     if not result:
         return ''
-
+        
     return os.path.splitext(os.path.basename(result[0]))[0]
 
 cmus_get_filename.socket_path = os.path.join(
@@ -124,10 +124,10 @@ def print_status(player=None, metadata=None):
         end_underline_pos = round(percentage_progress * min(end_underline_pos, output_width))
 
         sys.stdout.write('%{u#fff}')
-        for i in range(len(output)):
+        for i,c in enumerate(output):
             if i == end_underline_pos:
                 sys.stdout.write('%{-u}')
-            sys.stdout.write(output[i])
+            sys.stdout.write(c)
         sys.stdout.write('\n')
         sys.stdout.flush()
 

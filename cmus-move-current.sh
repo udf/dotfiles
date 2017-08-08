@@ -12,9 +12,7 @@ if [[ -z "$filepath" ]]; then
 	exit 2
 fi
 
-mv "$filepath" "/run/media/dank/Booty/Music/_trash/"  || {
+mv "$filepath" "$1"  || {
 	echo "yo i couldn't move the file"
 	exit 3
 }
-
-cmus-remote -n
