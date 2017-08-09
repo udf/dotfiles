@@ -59,14 +59,13 @@ def get_position(player, metadata):
         return f'{minutes:02}:{seconds:02}'
 
     position = player.get_property('position')
+    position_str = fmt(position)
     duration = metadata.get('mpris:length', 0)
-    percent = position/duration
-    position = fmt(position)
 
     if duration:
-        return '{}/{}'.format(position, fmt(duration)), percent
+        return '{}/{}'.format(position_str, fmt(duration)), position/duration
 
-    return f'{position}', 0
+    return f'{position_str}', 0
 
 
 def get_trackname(player, metadata):
