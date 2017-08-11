@@ -173,9 +173,10 @@ for_window [title="Find" class="Processing"] floating enable
 for_window [title="^Blender User Preferences$"] floating enable
 
 # execs
+exec --no-startup-id i3-msg 'workspace 2; exec telegram'
+exec --no-startup-id i3-msg 'workspace 2; exec discord'
+
 exec_always --no-startup-id feh --bg-scale $HOME/wallpaper.png
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id compton -CzG --backend glx --vsync opengl-swc
-exec --no-startup-id discord
-exec --no-startup-id telegram
+exec --no-startup-id compton -CzG
 exec --no-startup-id redshift-gtk -t 5500K:4500K
