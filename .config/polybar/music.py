@@ -112,7 +112,7 @@ def print_status(player=None, metadata=None):
             append_output(position, '[{}]')
             append_output(get_trackname(player, metadata), ' {}')
 
-    except GLib.Error as e:
+    except:
         output = []
 
     global prev_output
