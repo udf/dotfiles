@@ -35,7 +35,7 @@ do
 done
 
 #print some nice ascii art
-eval $(base64 --decode <<< "cHJpbnRmICIoLnwuKVxuICkuKCBcbiggdiApXG4gXHwvIiAmJiBzaHV0ZG93biAtciBub3cK")
+printf "(.|.)\n ).( \n( v )\n \|/"
 
 #uncomment this if you want to reboot
 #shutdown -r now
