@@ -6,7 +6,7 @@ from collections import defaultdict
 # build playlists from directories
 os.chdir(os.path.expanduser("~/.config/cmus/playlists"))
 music_dir = os.path.expanduser("~/Music")
-playlists = {"_trash" : "trash", "_favourites": "favourites"}
+playlists = {"_trash" : "trash", "_favourites": "favourites", "pending_yt": "pending_yt"}
 
 counter = defaultdict(int)
 

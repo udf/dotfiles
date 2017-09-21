@@ -148,13 +148,13 @@ bindsym XF86AudioPause exec "playerctl play-pause"
 bindsym XF86AudioNext exec "playerctl next"
 bindsym XF86AudioPrev exec "playerctl previous"
 
-bindsym $mod+XF86AudioNext exec $HOME/cmus-move-current.sh ~/Music/_trash && cmus-remote -n && cmus-remote -C update-cache
-bindsym $mod+Ctrl+XF86AudioNext exec $HOME/cmus-move-current.sh ~/Music/_favourites && cmus-remote -n && cmus-remote -C update-cache
-bindsym $mod+XF86AudioPlay exec $HOME/cmus-move-current.sh ~/Music/_favourites
+bindsym $mod+XF86AudioNext exec $HOME/cmus-move-current.sh trash && cmus-remote -n && cmus-remote -C update-cache
+bindsym $mod+Ctrl+XF86AudioNext exec $HOME/cmus-move-current.sh favourite && cmus-remote -n && cmus-remote -C update-cache
+bindsym $mod+XF86AudioPlay exec $HOME/cmus-move-current.sh favourite
 
 
 # program shortcuts
-bindsym $mod+g exec firefox-nightly
+bindsym $mod+g exec google-chrome-stable
 bindsym $mod+b exec Thunar
 bindsym $mod+c exec i3-sensible-terminal
 bindsym $mod+d exec --no-startup-id rofi -show run -width 20 -location 6 -yoffset -20 
