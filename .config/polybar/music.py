@@ -6,15 +6,16 @@ continuous output, which avoids burning CPU with unnecessary script restarts.
 import sys
 import os
 import re
-from datetime import timedelta
 from socket import socket, AF_UNIX, SOCK_STREAM
+import time
 
 import gi
 gi.require_version('Playerctl', '1.0')
 from gi.repository import Playerctl, GLib
 
-# todo:make this configurable via command line args
-output_width = 112
+
+output_width = int(sys.argv[1]) if len(sys.argv) > 1 else 100
+
 current_player = None
 prev_output = None
 
@@ -39,6 +40,10 @@ cmus_get_filename.socket_path = os.path.join(
     '/run', 'user', str(os.getuid()), 'cmus-socket'
 )
 
+def ljust_clip(string, n):
+    if len(string) > n:
+        return string[:n-3] + '...'
+    return string.ljust(n)
 
 def get_status(player):
     status = player.get_property('status')
@@ -116,22 +121,11 @@ def print_status(player=None, metadata=None):
         output = []
 
     global prev_output
-    output = ''.join(output)
-    end_underline_pos = len(output)
-    output = output.ljust(output_width)
+    output = ljust_clip(''.join(output), output_width)
     if output != prev_output:
-        end_underline_pos = round(percentage_progress * min(end_underline_pos, output_width))
-
-        sys.stdout.write('%{u#fff}')
-        for i,c in enumerate(output):
-            if i == end_underline_pos:
-                sys.stdout.write('%{-u}')
-            sys.stdout.write(c)
-        sys.stdout.write('\n')
-        sys.stdout.flush()
-
+        end_underline_pos = round(percentage_progress * output_width)
+        print('%{u#fff}' + output[:end_underline_pos] + '%{-u}' + output[end_underline_pos:], flush=True)
         prev_output = output
-
     return True
 
 
