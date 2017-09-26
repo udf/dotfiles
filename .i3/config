@@ -149,9 +149,9 @@ bindsym XF86AudioPause exec "playerctl play-pause"
 bindsym XF86AudioNext exec "playerctl next"
 bindsym XF86AudioPrev exec "playerctl previous"
 
-bindsym $mod+XF86AudioNext exec $HOME/cmus-move-current.sh trash && cmus-remote -n && cmus-remote -C update-cache
-bindsym $mod+Ctrl+XF86AudioNext exec $HOME/cmus-move-current.sh favourite && cmus-remote -n && cmus-remote -C update-cache
-bindsym $mod+XF86AudioPlay exec $HOME/cmus-move-current.sh favourite
+bindsym $mod+XF86AudioNext exec $HOME/cmus-move-current.py del && cmus-remote -n && cmus-remote -C update-cache
+bindsym $mod+Ctrl+XF86AudioNext exec $HOME/cmus-move-current.py fav && cmus-remote -n && cmus-remote -C update-cache
+bindsym $mod+XF86AudioPlay exec $HOME/cmus-move-current.py fav
 
 
 # program shortcuts
