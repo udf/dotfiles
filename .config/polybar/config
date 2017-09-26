@@ -5,12 +5,25 @@
 #------------------------------------#
 
 [colors]
-background=${xrdb:background}
-foreground=${xrdb:foreground}
-my_color1 =${xrdb:color1}
-my_color4 =${xrdb:color4}
-my_color7 =${xrdb:color7}
-my_color8 =${xrdb:color8}
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+black = ${xrdb:color8}
+red = ${xrdb:color9}
+green = ${xrdb:color10}
+yellow = ${xrdb:color11}
+blue = ${xrdb:color12}
+magenta = ${xrdb:color13}
+cyan = ${xrdb:color14}
+white = ${xrdb:color15}
+grey = #928374
+bblack = ${xrdb:color0}
+bred = ${xrdb:color1}
+bgreen = ${xrdb:color2}
+byellow = ${xrdb:color3}
+bblue = ${xrdb:color4}
+bmagenta = ${xrdb:color5}
+bcyan = ${xrdb:color6}
+bwhite = ${xrdb:color7}
 
 [bar/main_bar]
 #monitor=${env:MONITOR:HDMI-2}
@@ -26,7 +39,6 @@ background=${colors.background}
 foreground=${colors.foreground}
 
 line-size=2
-line-color=${colors.my_color4}
 
 padding-left=10
 padding-right=125
@@ -39,7 +51,6 @@ font-0=Hack:size=9;1
 font-1=FontAwesome:size=9;1
 font-2=Misc Fixed:size=9;1
 font-3=Misc Fixed Wide:size=9;1
-
 
 modules-left=musicinfo i3 xwindow
 modules-center=date volume
@@ -55,10 +66,9 @@ tray-background=${colors.background}
 
 wm-restack=i3
 
+
 [settings]
 screenchange-reload=true
-
-
 
 
 [module/musicinfo]
@@ -68,34 +78,31 @@ label=%output%
 format=<label>
 tail=true
 
+
 [module/i3]
-type=internal/i3
+type            = internal/i3
+format          = <label-state><label-mode>
+index-sort      = true
+wrapping-scroll = true
+strip-wsnumbers = true
+pin-workspaces  = true
 
-label-unfocused-background=${colors.background}
-label-unfocused-foreground=${colors.foreground}
+label-mode-foreground      = ${colors.blue}
+label-mode-background      = ${colors.background}
 
-label-mode=%mode%
-label-mode-padding=2
-label-mode-background=${colors.my_color7}
+label-focused              = %{B#262a33}  %name%  %{B#262a33}
+label-focused-padding      = 0
 
-label-focused=%index%
-label-focused-foreground=${colors.foreground}
-label-focused-background=${colors.background}
-label-focused-underline=${colors.my_color7}
-label-focused-padding=2
+label-unfocused            = %name%
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding    = 2
 
-label-unfocused=%index%
-label-unfocused-padding=2
+label-urgent               = %name%
+label-urgent-background    = ${colors.red}
+label-urgent-foreground    = ${colors.foreground}
+label-urgent-padding       = 2
 
-label-visible=%index%
-label-visible-underline=${colors.foreground}
-label-visible-padding=2
-
-label-urgent=%index%
-label-urgent-foreground=${colors.foreground}
-label-urgent-background=${colors.background}
-label-urgent-underline=${colors.my_color1}
-label-urgent-padding=2
 
 
 [module/xwindow]
@@ -112,14 +119,14 @@ interval=1
 date=" %a %b %d"
 time="%T %p "
 format-prefix-foreground=${colors.foreground}
-format-underline=${colors.my_color7}
+format-underline=${colors.bwhite}
 label=%date% %time%
 
 [module/volume]
 type=internal/volume
 label-volume = %percentage:3%%
 format-volume=<ramp-volume> <label-volume>
-format-volume-underline=${colors.my_color7}
+format-volume-underline=${colors.bwhite}
 label-muted= 
 label-muted-underline=$#ff4a4a
 ramp-volume-0=

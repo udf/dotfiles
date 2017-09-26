@@ -61,16 +61,16 @@ bindsym $mod+Shift+z move scratchpad
 bindsym $mod+z scratchpad show
 
 # Workspace names
-set $ws1 "I"
-set $ws2 "II"
-set $ws3 "III"
-set $ws4 "IV"
-set $ws5 "V"
-set $ws6 "VI"
-set $ws7 "VII"
-set $ws8 "VIII"
-set $ws9 "IX"
-set $ws10 "X"
+set $ws1  "1: I"
+set $ws2  "2: II"
+set $ws3  "3: III "
+set $ws4  "4: IV "
+set $ws5  "5: V "
+set $ws6  "6: VI "
+set $ws7  "7: VII "
+set $ws8  "8: VIII "
+set $ws9  "9: IX "
+set $ws10 "10: X "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -83,6 +83,7 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+Tab workspace "2"
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -175,9 +176,6 @@ for_window [title="Find" class="Processing"] floating enable
 for_window [title="^Blender User Preferences$"] floating enable
 
 # execs
-exec --no-startup-id i3-msg 'workspace 2; exec telegram'
-exec --no-startup-id i3-msg 'workspace 2; exec discord'
-
 exec_always --no-startup-id feh --bg-scale $HOME/wallpaper.png
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id compton -CzG
