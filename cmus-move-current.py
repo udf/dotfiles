@@ -59,11 +59,11 @@ try:
     dest = config[dest_key]['path']
 
     if dest == '/dev/null':
-        output('Deleted', f'{filename}')
+        output('Deleted', f'{filepath}')
         os.remove(filename)
     else:
-        output('Moved', f'{filename} to {dest}')
         os.rename(filepath, os.path.join(dest, filename))
+        output('Moved', f'{filepath} to {dest}')
 except RuntimeError as e:
     output('Error', str(e))
     exit(1)

@@ -153,7 +153,6 @@ bindsym $mod+XF86AudioNext exec $HOME/cmus-move-current.py del && cmus-remote -n
 bindsym $mod+Ctrl+XF86AudioNext exec $HOME/cmus-move-current.py fav && cmus-remote -n && cmus-remote -C update-cache
 bindsym $mod+XF86AudioPlay exec $HOME/cmus-move-current.py fav
 
-
 # program shortcuts
 bindsym $mod+g exec google-chrome-stable
 bindsym $mod+b exec Thunar
