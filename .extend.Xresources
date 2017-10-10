@@ -1,12 +1,12 @@
 ! Colours
 *background: #2f343f
-*foreground: #f3f4f5
+*foreground: #F6F7F9
 ! black
-*color0:  #2E3436
-*color8:  #555753
+*color0:  #2D303B
+*color8:  #4F5461
 ! red
-*color1:  #CC0000
-*color9:  #EF2929
+*color1:  #EC1B22
+*color9:  #FC4138
 ! green
 *color2:  #4E9A06
 *color10: #8AE234
@@ -15,7 +15,7 @@
 *color11: #FCE94F
 ! blue
 *color4:  #3465A4
-*color12: #729FCF
+*color12: #639FE5
 ! magenta
 *color5:  #75507B
 *color13: #AD7FA8
@@ -23,19 +23,19 @@
 *color6:  #06989A
 *color14: #34E2E2
 ! white
-*color7:  #D3D7CF
-*color15: #EEEEEC
+*color7:  #CCD3DC
+*color15: #E7EAEE
 
 
 ! rofi
 ! Enable the extended coloring options
 rofi.color-enabled: true
 !                  bg       border   separator
-rofi.color-window: #2f343f, #757575, #757575
+rofi.color-window: #2f343f, #A8A8A8, #A8A8A8
 !                  bg       fg       bg-alt   hl-bg    hl-fg
-rofi.color-normal: #2f343f, #777E8D, #2f343f, #2f343f, #f3f4f5
-rofi.color-active: #2f343f, #777E8D, #2f343f, #2f343f, #f3f4f5
-rofi.color-urgent: #2f343f, #777E8D, #2f343f, #2f343f, #f3f4f5
+rofi.color-normal: #2f343f, #767B87, #2f343f, #2f343f, #F6F7F9
+rofi.color-active: #2f343f, #767B87, #2f343f, #2f343f, #F6F7F9
+rofi.color-urgent: #2f343f, #767B87, #2f343f, #2f343f, #F6F7F9
 
 rofi.separator-style: solid
 rofi.sidebar-mode:    false
@@ -74,8 +74,8 @@ URxvt.iso14755:    false
 URxvt.iso14755_52: false
 
 ! color scheme:
-URxvt*background: #2B2B2B
-URxvt*foreground: #DEDEDE
+URxvt*background: #262932
+URxvt*foreground: #D8DDE4
 
 URxvt*colorUL: #86a2b0
 

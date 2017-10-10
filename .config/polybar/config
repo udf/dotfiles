@@ -15,7 +15,6 @@ blue = ${xrdb:color12}
 magenta = ${xrdb:color13}
 cyan = ${xrdb:color14}
 white = ${xrdb:color15}
-grey = #928374
 bblack = ${xrdb:color0}
 bred = ${xrdb:color1}
 bgreen = ${xrdb:color2}
@@ -127,8 +126,8 @@ type=internal/volume
 label-volume = %percentage:3%%
 format-volume=<ramp-volume> <label-volume>
 format-volume-underline=${colors.bwhite}
-label-muted= 
-label-muted-underline=$#ff4a4a
+label-muted=  0%
+label-muted-underline=#ff4d4d
 ramp-volume-0=
 ramp-volume-1=
 ramp-volume-2=
@@ -145,7 +144,7 @@ margin-bottom=5
 type=internal/cpu
 interval=1
 format-prefix=" "
-format-underline=#ff4a4a
+format-underline=#ff4d4d
 label=%percentage:2%%
 
 
@@ -153,7 +152,7 @@ label=%percentage:2%%
 type=internal/memory
 interval=5
 format-prefix=" "
-format-underline=#4aff4a
+format-underline=#8ae234
 label=%percentage_used:2%%
 
 
@@ -163,7 +162,7 @@ interface=enp5s0
 interval=1
 label-connected= %downspeed:4%
 
-format-connected-underline=#ffff4a
+format-connected-underline=#fce94f
 
 [module/upspeed]
 type=internal/network
@@ -171,4 +170,4 @@ interface=enp5s0
 interval=1
 label-connected= %upspeed:4%
 
-format-connected-underline=#4affff
+format-connected-underline=#34e2e2

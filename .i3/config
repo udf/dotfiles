@@ -179,3 +179,5 @@ exec_always --no-startup-id feh --bg-scale $HOME/wallpaper.png
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id compton -CzG
 exec --no-startup-id redshift-gtk -t 5500K:4500K
+exec --no-startup-id telegram
+exec --no-startup-id discord
