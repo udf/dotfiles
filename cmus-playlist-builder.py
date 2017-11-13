@@ -11,7 +11,8 @@ playlists = {
     "_favourites": "favourites", 
     "pending_yt": "pending_yt", 
     "pending_yt_ka": "pending_yt_ka",
-    "pending_wub": "pending_wub"
+    "pending_wub": "pending_wub",
+    "wubwubwub": "wubwubwub"
 }
 
 counter = defaultdict(int)
