@@ -19,6 +19,7 @@ output_width = int(sys.argv[1]) if len(sys.argv) > 1 else 100
 current_player = None
 prev_output = None
 
+
 # Based on https://github.com/kiike/cmus-remote/blob/master/backend.py
 def cmus_get_filename():
     s = socket(AF_UNIX, SOCK_STREAM)
@@ -33,17 +34,20 @@ def cmus_get_filename():
     result = re.findall(r'file (.+)\n', recv.decode('utf-8'))
     if not result:
         return ''
-        
+
     return os.path.splitext(os.path.basename(result[0]))[0]
+
 
 cmus_get_filename.socket_path = os.path.join(
     '/run', 'user', str(os.getuid()), 'cmus-socket'
 )
 
+
 def ljust_clip(string, n):
     if len(string) > n:
         return string[:n-3] + '...'
     return string.ljust(n)
+
 
 def get_status(player):
     status = player.get_property('status')
@@ -78,7 +82,7 @@ def get_trackname(player, metadata):
     artist = ', '.join(metadata.get('xesam:artist', ''))
 
     if not artist:
-        if not title and player.get_property('player-name') == 'cmus':
+        if not title and 'cmus' in player.get_property('player-name'):
             return cmus_get_filename()
         else:
             return title
@@ -110,13 +114,12 @@ def print_status(player=None, metadata=None):
             metadata = player.get_property('metadata').unpack()
 
         append_output(get_status(player))
-        append_output(player.get_property('player-name'), '[{}]')
+        append_output(player.get_property('player-name').strip('.'), '[{}]')
 
         if player.get_property('status') != "Stopped":
             position, percentage_progress = get_position(player, metadata)
             append_output(position, '[{}]')
             append_output(get_trackname(player, metadata), ' {}')
-
     except:
         output = []
 
