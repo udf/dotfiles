@@ -53,7 +53,7 @@ font-3=Misc Fixed Wide:size=9;1
 
 modules-left=musicinfo i3 xwindow
 modules-center=date volume
-modules-right=downspeed upspeed cpu memory
+modules-right=downspeed_lan upspeed_lan downspeed_teth upspeed_teth cpu memory
 
 tray-position=right
 tray-padding=5
@@ -116,7 +116,7 @@ label-padding=1
 type=internal/date
 interval=1
 date=" %a %b %d"
-time="%T %p "
+time="%T "
 format-prefix-foreground=${colors.foreground}
 format-underline=${colors.bwhite}
 label=%date% %time%
@@ -156,18 +156,30 @@ format-underline=#8ae234
 label=%percentage_used:2%%
 
 
-[module/downspeed]
+[module/downspeed_lan]
 type=internal/network
 interface=enp5s0
 interval=1
 label-connected= %downspeed:4%
-
 format-connected-underline=#fce94f
 
-[module/upspeed]
+[module/upspeed_lan]
 type=internal/network
 interface=enp5s0
 interval=1
 label-connected= %upspeed:4%
+format-connected-underline=#34e2e2
 
+[module/downspeed_teth]
+type=internal/network
+interface=enp0s29u1u6
+interval=1
+label-connected= %downspeed:4%
+format-connected-underline=#fce94f
+
+[module/upspeed_teth]
+type=internal/network
+interface=enp0s29u1u6
+interval=1
+label-connected= %upspeed:4%
 format-connected-underline=#34e2e2
