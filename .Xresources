@@ -28,7 +28,7 @@
 *.color15:      #e7eaee
 ! base16 extra colors
 *color16: #ae81ff
-*color17: #ae81ff
+*color17: #ff8d5c
 ! base16 extra gray shades
 *color18: #252730
 *color19: #373b48

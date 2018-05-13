@@ -165,10 +165,11 @@ bindsym $mod+d exec --no-startup-id rofi -show run -width 20 -location 6 -yoffse
 # screenshot stuff
 bindsym --release Shift+Print exec --no-startup-id $HOME/screenshot.sh
 bindsym --release Print exec --no-startup-id $HOME/screenshot.sh -s
-bindsym --release Ctrl+Shift+Print exec --no-startup-id $HOME/screenshot.sh -e gimp
-bindsym --release Ctrl+Print exec --no-startup-id $HOME/screenshot.sh -s -e gimp
+bindsym --release Ctrl+Shift+Print exec --no-startup-id $HOME/screenshot.sh -e "gimp --new-instance"
+bindsym --release Ctrl+Print exec --no-startup-id $HOME/screenshot.sh -s -e "gimp --new-instance"
 
 # floating windows defs
+floating_maximum_size 3840 x 2160
 for_window [class="Lxappearance"] floating enable
 for_window [class="File-roller"] floating enable
 for_window [instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] floating enable
@@ -177,6 +178,9 @@ for_window [class="feh"] floating enable
 for_window [title="Find" class="Processing"] floating enable
 for_window [title="^Blender User Preferences$"] floating enable
 for_window [class="Terraria.bin.x86"] floating enable
+for_window [window_role="gimp-toolbox-color-dialog"] move position mouse
+
+for_window [window_role="gimp-startup"] move scratchpad
 
 # execs
 exec_always --no-startup-id feh --bg-scale $HOME/wallpaper.png
@@ -187,3 +191,4 @@ exec --no-startup-id telegram
 exec --no-startup-id discord
 
 exec --no-startup-id $HOME/g710-pulse/g710_pulse
+
